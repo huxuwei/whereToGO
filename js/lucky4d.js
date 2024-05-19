@@ -56,29 +56,6 @@ $(function () {
     loadImage(personArray, function (img) {
         $('.loader_file').hide();
     });
-    /*
-     若为ajax请求执行这段代码
-     此为为ajax请求;
-     $.get('index.php',function(data){
-         if(data.res == 1){
-             personArray = data.data; //此为数组
-
-             //执行图片预加载并关闭加载试图
-             loadImage(personArray, function (img) {
-                $('.loader_file').hide();
-             })
-             Obj.M = $('.container').lucky({
-             row : 7, //每排显示个数  必须为奇数
-             col : 7, //每列显示个数  必须为奇数
-             depth : 6, //纵深度
-             iconW : 30, //图片的宽
-             iconH : 30, //图片的高
-             iconRadius : 8, //图片的圆角
-             data : personArray, //数据的地址数组
-         });
-         }
-     })
-     */
 
     /*
      中奖人员展示效果
@@ -143,14 +120,6 @@ $(function () {
         $('.lucky_list').hide();
         $(".container").show();
         Obj.M.open();
-        //此为ajax请求获奖结果
-        //$.get('luckyNum.php',{luckyNum : Obj.luckyNum,luckyPrize:Obj.luckyPrize},function(data){
-        //	  if(data.res == 1){
-        //		  Obj.luckyResult = data.luckyResult;
-        //        $("#stop").show(500);
-        //	  }
-        //})
-        //ajax获奖结果结束
 
         //此为人工写入获奖结果
         randomLuckyArr();

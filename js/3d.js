@@ -41,13 +41,13 @@
                     if (i == M.centerX && r == M.centerY) {
                         if (!M.isThisTag) {
 
-                            eleStr += '<div style="' + styleFun(i, r) + '" class="js_current_dom"></div>';
+                            eleStr += '<image style="' + styleFun(i, r) + '" class="js_current_dom"></image>';
                             M.isThisTag = true;
 
                         }
 
                     } else {
-                        eleStr += '<div data-depth="' + n + '" style="' + styleFun(i, r) + '" class="element"></div>';
+                        eleStr += '<image data-depth="' + n + '" style="' + styleFun(i, r) + '" class="element"></image>';
                     }
                 }
             }
@@ -71,10 +71,12 @@
             for (var i = 0; i < elements; i++) {
                 var element = $('.element')[i];
                 if (!!settings.data[i]) {
-                    $(element).css('background-image', 'url(' + settings.data[i].image + ')');
+                    // $(element).css('background-image', 'url(' + settings.data[i].image + ')');
+                    $(element).attr({src: settings.data[i].image})
                 } else {
                     index >= (settings.data.length - 1) ? index = 1 : ++index;
-                    $(element).css('background-image', 'url(' + settings.data[index].image + ')');
+                    // $(element).css('background-image', 'url(' + settings.data[index].image + ')');
+                    $(element).attr({src: settings.data[index].image})
                 }
 
                 var depth = $(element).attr('data-depth');
@@ -109,10 +111,12 @@
             M.timer = setInterval(function () {
                 //如果内定号码不存在，则为随机号码
                 var randomNum = Math.floor(Math.random() * settings.data.length); //（随机数）
-
-                $('.js_current_dom').css({
-                   'background-image': 'url(' + settings.data[randomNum].image + ')'
+                $('.js_current_dom').attr({
+                    src: settings.data[randomNum].image
                 })
+                // $('.js_current_dom').css({
+                //    'background-image': 'url(' + settings.data[randomNum].image + ')'
+                // })
             }, 50)
         }
         //停止运动
