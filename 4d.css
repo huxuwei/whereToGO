@@ -175,8 +175,8 @@ body {
   display: flex;
   flex-direction: row;
   font-size: 18px !important;
-  display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
 .lucky_prize_box  input {
