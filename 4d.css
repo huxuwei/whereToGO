@@ -183,6 +183,10 @@ body {
   width: 30px!important;
   border-radius: 50%!important;
 }
+.lucky_prize_box div{
+  display: flex;
+  align-items: center;
+}
 .lucky_prize_direction{
   width:70px;
   height:100%;
