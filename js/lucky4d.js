@@ -1,4 +1,5 @@
 $(function () {
+    
     /*
      luckyNum为每次抽几人
      luckyResult为抽奖结果的集合（数组）
@@ -15,7 +16,96 @@ $(function () {
     $(".select_lucky_number").bind('change', function () {
         // Obj.luckyNum = $(this).val();
     })
-    $(".lucky_number").html(personArray.length)
+
+    let newArr=  [...personArray]
+    $('#one').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>item.outDoorLabel.includes('1星')))  
+        }else{
+            newArr = newArr.filter(item=>!item.outDoorLabel.includes('1星'))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+    $('#two').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>item.outDoorLabel.includes('2星')))  
+        }else{
+            newArr = newArr.filter(item=>!item.outDoorLabel.includes('2星'))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+    $('#three').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>item.outDoorLabel.includes('3星')))  
+        }else{
+            newArr = newArr.filter(item=>!item.outDoorLabel.includes('3星'))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+    $('#four').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>['4星难度','5星难度'].includes(item.outDoorLabel)))  
+        }else{
+            newArr = newArr.filter(item=>!['4星难度','5星难度'].includes(item.outDoorLabel))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+
+    $('#child').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>item.productCat.includes('亲子')))  
+        }else{
+            newArr = newArr.filter(item=>!item.productCat.includes('亲子'))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+   
+    $('#animal').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>item.title.includes('汪汪')))  
+        }else{
+            newArr = newArr.filter(item=>!item.title.includes('汪汪'))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+    $('#zhu').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>item.productCat.includes('露营')))  
+        }else{
+            newArr = newArr.filter(item=>!item.productCat.includes('露营'))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+    $('#bike').bind('change', function (e) {
+        console.log(123, e.target.checked);
+        const isChecked =e.target.checked
+        if (isChecked){
+            newArr.push(...personArray.filter(item=>item.productCat.includes('骑行')))  
+        }else{
+            newArr = newArr.filter(item=>!item.productCat.includes('骑行'))
+        }
+        $(".lucky_number").html(newArr.length)
+    }).attr('checked', true)
+    
+    // personArray.filter(item=>item.productCat.includes('亲子'))
+
+
+
+    // $(".lucky_number").html(116)
     /*
      图片预加载
      */
@@ -70,8 +160,8 @@ $(function () {
             $fragEle.append($luckyEle, $userName);
             $('.mask').append($fragEle);
             $(".mask").fadeIn(200);
-            $luckyEle.attr('src', personArray[Obj.luckyResult[num]].image);
-            $userName.text(personArray[Obj.luckyResult[num]].title)
+            $luckyEle.attr('src', newArr[Obj.luckyResult[num]].image);
+            $userName.text(newArr[Obj.luckyResult[num]].title)
             $fragEle.animate({
                 'left': '50%',
                 'top': '50%',
@@ -91,7 +181,7 @@ $(function () {
                         $luckyEle.attr('class', 'lpl_userImage').attr('style', '');
                         $userName.attr('class', 'lpl_userName').attr('style', '');
                         $fragEle.attr('class', 'lpl_userInfo').attr('style', '');
-                        $fragEle.attr('href', personArray[Obj.luckyResult[num]].url).attr('style', '');
+                        $fragEle.attr('href', newArr[Obj.luckyResult[num]].url).attr('style', '');
 
                         $('.lpl_list.active').append($fragEle);
                         // $('.lucky_dialog').css({'display': 'block'});
@@ -141,7 +231,7 @@ $(function () {
     function randomLuckyArr() {
         Obj.luckyResult = [];
         for (var i = 0; i < Obj.luckyNum; i++) {
-            var random = Math.floor(Math.random() * personArray.length);
+            var random = Math.floor(Math.random() * newArr.length);
             if (Obj.luckyResult.indexOf(random) == -1) {
                 Obj.luckyResult.push(random)
             } else {
