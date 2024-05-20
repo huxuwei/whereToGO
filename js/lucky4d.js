@@ -15,6 +15,7 @@ $(function () {
     $(".select_lucky_number").bind('change', function () {
         // Obj.luckyNum = $(this).val();
     })
+    $(".lucky_number").html(personArray.length)
     /*
      图片预加载
      */
@@ -65,12 +66,12 @@ $(function () {
         setTimeout(function () {
             var $luckyEle = $('<img class="lucky_icon" />');
             var $userName = $('<p class="lucky_userName"></p>');
-            var $fragEle = $('<div class="lucky_userInfo"></div>');
+            var $fragEle = $('<a class="lucky_userInfo"></a>');
             $fragEle.append($luckyEle, $userName);
             $('.mask').append($fragEle);
             $(".mask").fadeIn(200);
             $luckyEle.attr('src', personArray[Obj.luckyResult[num]].image);
-            $userName.text(personArray[Obj.luckyResult[num]].name)
+            $userName.text(personArray[Obj.luckyResult[num]].title)
             $fragEle.animate({
                 'left': '50%',
                 'top': '50%',
@@ -90,7 +91,10 @@ $(function () {
                         $luckyEle.attr('class', 'lpl_userImage').attr('style', '');
                         $userName.attr('class', 'lpl_userName').attr('style', '');
                         $fragEle.attr('class', 'lpl_userInfo').attr('style', '');
+                        $fragEle.attr('href', personArray[Obj.luckyResult[num]].url).attr('style', '');
+
                         $('.lpl_list.active').append($fragEle);
+                        // $('.lucky_dialog').css({'display': 'block'});
                     })
                 }, 1000)
             })
@@ -117,10 +121,12 @@ $(function () {
      开始按钮事件函数
      */
     $('#open').click(function () {
+        $('#lpl_list').html('')
         $('.lucky_list').hide();
         $(".container").show();
         Obj.M.open();
 
+        //
         //此为人工写入获奖结果
         randomLuckyArr();
         setTimeout(function () {
